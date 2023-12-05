@@ -29,14 +29,19 @@ where `pos` is the position, `i` is the dimension, and `d_model` is the dimensio
 
 2. **Add Positional Encodings to Input Embeddings** : 
     - Sum the positional encodings with the input embeddings.
-
-Formula :   
+      
+Formula :  
 
 $$
-\text{Input}_{\text{with PE}} = \text{Input}_{\text{embedding}} + \text{PE}
+{Input}_{(with PE)} = 
 $$
 
-<br>
+$$
+{Input}_{(embedding)} + {PE}
+$$
+
+"The input with positional encoding is equal to the input embedding plus the positional encoding."
+ 
 
 # Usage
 
