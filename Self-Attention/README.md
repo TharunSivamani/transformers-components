@@ -15,6 +15,9 @@ This repository contains a practical implementation of the self-attention block 
 3. V : What I actually offer     
     [ sequence_length x d_v ]
 
+# Architecture
+
+![sself-attn-img](https://vaclavkosar.com/images/expire-span-attention-recap.png)
 
 ## How It Works
 
