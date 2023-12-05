@@ -28,12 +28,15 @@ The self-attention block consists of three main components:
    - These matrices are obtained by linear transformations of the input sequence.
 
    Formulas:
+   
     $$
     Q = X \cdot W_q
     $$
+   
     $$
     K = X \cdot W_k
-    $$ 
+    $$
+   
     $$
     V = X \cdot W_v   
     $$
@@ -45,9 +48,10 @@ where `X` is the input sequence, and `W_q`, `W_k`, and `W_v` are learnable weigh
 - Calculate the attention scores by taking the dot product of the Query and Key matrices and scaling by the square root of the dimension of the key vectors.
 
     Formulas:
-    $$
-    \text{Attention Scores} = \text{softmax}\left(\frac{Q \cdot K^T}{\sqrt{d_k}}\right)
-    $$
+  
+$$   
+\text{Attention Scores} = \text{softmax}\left(\frac{Q \cdot K^T}{\sqrt{d_k}}\right)    
+$$   
 
 
 
@@ -57,7 +61,11 @@ where `d_k` is the dimension of the key vectors.
 - Multiply the attention scores by the Value matrix to get the weighted sum, which is the output of the self-attention block.
 
     Formula:
-    $$
-    \text{Output} = \text{Attention Scores} \cdot V
-    $$
+
+$$  
+\text{Output} = \text{Attention Scores} \cdot V
+$$  
+
+
+  
 
