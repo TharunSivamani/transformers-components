@@ -17,13 +17,13 @@ This repository provides an implementation of Layer Normalization within a Trans
 Given a tensor x of shape batch_size, hidden_dim , calculate the mean `mu` , variance `var`, and standard deviation `std` across the feature dimension:
 
 $$
-\mu = \frac{1}{\text{{hidden\_size}}} \sum_{i=1}^{\text{{hidden\_size}}} x_i
+\mu = \frac{1}{\text{{hidden-size}}} \sum_{i=1}^{\text{{hidden-size}}} x_i
 $$
 
 <br> 
 
 $$
-\sigma^2 = \frac{1}{\text{{hidden\_size}}} \sum_{i=1}^{\text{{hidden\_size}}} (x_i - \mu)^2
+\sigma^2 = \frac{1}{\text{{hidden-size}}} \sum_{i=1}^{\text{{hidden-size}}} (x_i - \mu)^2
 $$
 
 <br> 
