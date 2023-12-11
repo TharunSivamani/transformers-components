@@ -6,8 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-def scaled_dot_product(q, k, v, mask = None):
-
+def scaled_dot_product(q, k, v, mask=None):
     d_k = q.shape[-1]
 
     scaled = torch.matmul(q, k.transpose(-2, -1)) / math.sqrt(d_k)
@@ -20,7 +19,6 @@ def scaled_dot_product(q, k, v, mask = None):
 
 
 class MultiHeadAttention(nn.Module):
-
     def __init__(self, input_dim, d_model, num_heads):
         super(MultiHeadAttention, self).__init__()
         self.input_dim = input_dim
@@ -31,15 +29,16 @@ class MultiHeadAttention(nn.Module):
         self.qkv_layer = nn.Linear(input_dim, 3 * d_model)
         self.linear_layer = nn.Linear(d_model, d_model)
 
-    def forward(self, x, mask = None):
-
+    def forward(self, x, mask=None):
         batch_size, sequence_length, input_dim = x.shape
         print(f"x.size(): {x.size()}")
 
         qkv = self.qkv_layer(x)
         print(f"qkv.size(): {qkv.size()}")
 
-        qkv = qkv.reshape(batch_size, sequence_length, self.num_heads, 3 * self.head_dim)
+        qkv = qkv.reshape(
+            batch_size, sequence_length, self.num_heads, 3 * self.head_dim
+        )
         print(f"qkv.size(): {qkv.size()}")
 
         qkv = qkv.permute(0, 2, 1, 3)
@@ -51,26 +50,28 @@ class MultiHeadAttention(nn.Module):
         values, attention = scaled_dot_product(q, k, v, mask)
         print(f"values.size(): {values.size()}, attention.size:{ attention.size()} ")
 
-        values = values.reshape(batch_size, sequence_length, self.num_heads * self.head_dim)
+        values = values.reshape(
+            batch_size, sequence_length, self.num_heads * self.head_dim
+        )
         print(f"values.size(): {values.size()}")
 
         out = self.linear_layer(values)
         print(f"out.size(): {out.size()}")
-        
-        return out
-    
-if __name__ == "__main__":
 
+        return out
+
+
+if __name__ == "__main__":
     input_dim = 1024
     d_model = 512
     num_heads = 8
 
     batch_size = 30
     sequence_length = 5
-    x = torch.randn( (batch_size, sequence_length, input_dim) )
+    x = torch.randn((batch_size, sequence_length, input_dim))
 
     model = MultiHeadAttention(input_dim, d_model, num_heads)
     out = model.forward(x)
 
     print(out)
-    print(out.shape) # [ 30, 5, 512 ]
+    print(out.shape)  # [ 30, 5, 512 ]
